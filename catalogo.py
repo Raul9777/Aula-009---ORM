@@ -78,3 +78,16 @@ def atualizar_filme():
             print("Filme atualizado!")
         else:
             print("Filme não encontrado.")
+
+def deletar_filme():
+    id_filme = int(input("Digite o ID do filme: "))
+
+    with Session() as session:
+        filme = session.get(Filme, id_filme)
+
+        if filme:
+            session.delete(filme)
+            session.commit()
+            print("Filme deletado!")
+        else:
+            print("Filme não encontrado.")
