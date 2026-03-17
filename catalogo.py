@@ -65,3 +65,16 @@ def listar_filmes():
         
         for filme in filmes:
             print(f"{filme.id} - {filme.titulo} ({filme.ano_lancamento}) - Nota: {filme.nota}")
+
+def atualizar_filme():
+    id_filme = int(input("Digite o ID do filme: "))
+
+    with Session() as session:
+        filme = session.get(Filme, id_filme)
+
+        if filme:
+            filme.nota = float(input("Nova nota: "))
+            session.commit()
+            print("Filme atualizado!")
+        else:
+            print("Filme não encontrado.")
