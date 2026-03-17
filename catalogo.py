@@ -55,3 +55,13 @@ def cadastrar_filme():
    
 #Criar as funções listar, atualizar e deletar
 cadastrar_filme()
+def listar_filmes():
+    with Session() as session:
+        filmes = session.query(Filme).all()
+        
+        if not filmes:
+            print("Nenhum filme cadastrado.")
+            return
+        
+        for filme in filmes:
+            print(f"{filme.id} - {filme.titulo} ({filme.ano_lancamento}) - Nota: {filme.nota}")
